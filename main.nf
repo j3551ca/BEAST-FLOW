@@ -26,9 +26,12 @@ Optional arguments:
 --out_dir                      Output directory to place final BEAST-FLOW results [./output]
 --evo_model                    Evolutionary model used to generate phylogenetic tree [GTR+G]
 --run_part2                    Continue with rest of analysis after manual check of temporal signal [false]
---xml_args                     Input parameters for generating xml for BEAST [--clockModel strict --chainLength 1000000 ...]
+--xml_args                     Input parameters for generating xml for BEAST. Use <beast2-xml.py --help>
+                               for full list of options [--chainLength 1000000 --sequenceIdAgeRegex...]
 --xml_temp                     Template used to generate xml, differs depending on clock used [strict.xml]
---beast_args                   Parameters for BEAST run [-overwrite]
+--beast_args                   Parameters for BEAST run. Use <beast -help> for all options [-overwrite]
+--treeann_args                 TreeAnnotator arguments. Use <treeannotator -help> for options [-burnin 10]
+--iqtree_args                  IQ-TREE arguments. Use <iqtree --help> for more options [-T 4 -B 1000]
 --version                      Current BEAST-FLOW version number
 --help                         This usage statement
         """
@@ -83,7 +86,7 @@ processes
 process msa {
 
   tag "aligning sequences from ${multi_fasta} with MAFFT"
-  publishDir "${params.out_dir}/${params.prefix}/"
+  publishDir "${params.out_dir}/${params.prefix}/", mode: 'copy'
 
   input:
   file(multi_fasta)
@@ -99,7 +102,7 @@ process msa {
 process msa_validation {
 
   tag "deduplicating & checking readability of ${msa}"
-  publishDir "${params.out_dir}/${params.prefix}/"
+  publishDir "${params.out_dir}/${params.prefix}/", mode: 'copy'
 
     input:
     file(msa)
@@ -133,7 +136,7 @@ process construct_tree {
 
     tag "contruct maximum likelihood (ML) tree with IQ-TREE \
 using ${params.evo_model} model."
-    publishDir "${params.out_dir}/${params.prefix}/"
+    publishDir "${params.out_dir}/${params.prefix}/", mode: 'copy'
 
     input:
     file validated_msa
@@ -155,7 +158,7 @@ using ${params.evo_model} model."
 process phy_to_fa {
 
   tag "convert PHYLIP MSA to fasta for BEAUti2"
-  publishDir "${params.out_dir}/${params.prefix}/"
+  publishDir "${params.out_dir}/${params.prefix}/", mode: 'copy'
 
   input:
   file(phy_msa)
@@ -171,7 +174,7 @@ process phy_to_fa {
 process xml_gen {
 
   tag "generate xml file for BEAST2"
-  publishDir "${params.out_dir}/${params.prefix}/"
+  publishDir "${params.out_dir}/${params.prefix}/", mode: 'copy'
 
   input:
   tuple file(fa_msa), file(template)
@@ -182,9 +185,9 @@ process xml_gen {
   when:
   params.run_part2 == true
 
-  script://TODO: date parsing with regex not working properly
+  script:
   """
-beast2-xml.py \
+  beast2-xml.py \
   --templateFile ${template}\
   ${params.xml_args} \
   --logFileBasename ${params.prefix}\
@@ -195,7 +198,7 @@ beast2-xml.py \
 process beast {
 
   tag "Bayesian evolutionary analysis sampling trees"
-  publishDir "${params.out_dir}/${params.prefix}/"
+  publishDir "${params.out_dir}/${params.prefix}/", mode: 'copy'
 
   input:
   file xml
@@ -211,7 +214,7 @@ process beast {
 process mcc_tree {
 
   tag "maximum credibility clade tree from BEAST2 output"
-  publishDir "${params.out_dir}/${params.prefix}/"
+  publishDir "${params.out_dir}/${params.prefix}/", mode: 'copy'
 
   input:
   file(trees)
@@ -245,8 +248,8 @@ include {
 
 /**
 include { MSA } from "./modules/msa.nf"
-include { TREE } from "${projectDir}/workflows/tree.nf"
-include { BEAST } from "${projectDir}/workflows/beast.nf"
+include { TREE } from "${projectDir}/modules/tree.nf"
+include { BEAST } from "${projectDir}/modules/beast.nf"
 
 workflow {
 
