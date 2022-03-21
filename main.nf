@@ -83,16 +83,6 @@ results folder: ${params.out_dir}
 import processes from modules
 ---------------------------------------------------------------------------------
 */
-/**like python "import pandas as pd"
-direct main script to modules
-*/
-/**
-include {
-  msa;
-  msa_validation
-} from "${projectDir}/modules/msa.nf"
-*/
-
 
 include { MSA } from "${projectDir}/modules/msa.nf"
 include { TREE } from "${projectDir}/modules/tree.nf"
