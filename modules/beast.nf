@@ -52,7 +52,8 @@ process beast {
   file xml
 
   output:
-  file "*${params.prefix}*.trees"
+  tuple path("*${params.prefix}*.trees"), \
+  path("*.log")
 
   """
   beast ${params.beast_args} ${xml}
@@ -65,10 +66,13 @@ process mcc_tree {
   publishDir "${params.out_dir}/${params.prefix}/", mode: 'copy'
 
   input:
-  file(trees)
+  tuple file(trees), file(log)
 
   output:
   file("*${params.prefix}*mcc.tree")
+
+  when:
+  params.run_part3==true
 
   """
   treeannotator \
@@ -81,7 +85,7 @@ process mcc_tree {
 workflow BEAST {
 
   take:
-  msa2 //needs to be renamed or ? not consumed
+  msa2 
 
   main:
   //TempEst
@@ -102,11 +106,19 @@ workflow BEAST {
 
   beast(xml_gen.out)
 
-  mcc_tree(beast.out)
+  beast.out.subscribe onNext: { log.info """\nCheck ${params.out_dir}/${params.prefix}.log
+in Tracer to check for ESS, MCMC convergence, and mixing.\n
+Proceed when ready by adding < --run_part3 true > to previous command.\n""" }
 
-  //FigTree
+  beast_ch = beast.out
 
-  emit: //emit channel from workflow to be accessed as name_of_workflow.out
+  //Manual revision in Tracer
+  
+  mcc_tree(beast_ch)
+
+  //Manual revision in FigTree
+
+  emit: 
   mcc_tree.out
-  //view mol. clock in figtree
+  
 }
