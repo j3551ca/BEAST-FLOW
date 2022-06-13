@@ -1,4 +1,10 @@
-# BEAST-FLOW
+# 
+██████╗░███████╗░█████╗░░██████╗████████╗░░░░░░███████╗██╗░░░░░░█████╗░░██╗░░░░░░░██╗
+██╔══██╗██╔════╝██╔══██╗██╔════╝╚══██╔══╝░░░░░░██╔════╝██║░░░░░██╔══██╗░██║░░██╗░░██║
+██████╦╝█████╗░░███████║╚█████╗░░░░██║░░░█████╗█████╗░░██║░░░░░██║░░██║░╚██╗████╗██╔╝
+██╔══██╗██╔══╝░░██╔══██║░╚═══██╗░░░██║░░░╚════╝██╔══╝░░██║░░░░░██║░░██║░░████╔═████║░
+██████╦╝███████╗██║░░██║██████╔╝░░░██║░░░░░░░░░██║░░░░░███████╗╚█████╔╝░░╚██╔╝░╚██╔╝░
+╚═════╝░╚══════╝╚═╝░░╚═╝╚═════╝░░░░╚═╝░░░░░░░░░╚═╝░░░░░╚══════╝░╚════╝░░░░╚═╝░░░╚═╝░░
 
 ## Introduction
 
@@ -74,10 +80,14 @@ Run BEAST-FLOW pipeline:
 ```
 nextflow run main.nf -profile conda --multi_fa dengue_multi.fasta --prefix  dengue_run1 [OPTIONS]
 ```
+For BEAST-FLOW help message:
+```
+nextflow run main.nf --help
+```
 
 ## Input
 
-1.	Multi-fasta file with at least 5 sequences \(MAFFT will throw error otherwise\). 
+1.	Multi-fasta file with at least 5 sequences \(MAFFT will throw error otherwise\): 
 
 \>Seq1_2021-05-31\
 ATGGAGAGCCTTGTCCCTGGTTTCAACGAGAAAACACACGTCCAACTCAGTTTGCCTGTTTTACAGGTTCGCGACGTGCTCGTACGTGGCTTTGGAGACTCCGTGGAGGAGGTCTTATCAGAGGCACGTCAACATCAA\
@@ -89,13 +99,13 @@ ATGGAGAGCCTTGTCCCTGGTTTCAACGAGAAAACACACGTCCAACTCAGTTTGCCTGTTTTACAGGTTCGCGACGTGCT
 .\
 .
 
-2.	Prefix string. This label will be used to name output files generated in BEAST-FLOW and avoids overwriting. 
+2.	Prefix string. This label will be used to name output files generated in BEAST-FLOW and avoids overwriting:
 
 dengue_run1
 
 ## Output
 
-Depending on the options specified in the command line, the following result files should be placed in the output directory under a folder containing the same name as the prefix specified in the initial command (see step 2. under “Usage”):
+Depending on the options specified in the command line, the following result files should be placed in the output directory under a folder containing the same name as the prefix specified in the initial command (see step 2 under [Usage](#usage):
 
 - A multiple sequence alignment \(MSA\): \*_msa.fasta
 - A maximum-likelihood \(ML\) phylogenetic tree in Newick format: \*.treefile
