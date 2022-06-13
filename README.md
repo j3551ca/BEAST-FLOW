@@ -12,14 +12,14 @@ BEAST-FLOW is written in the glue language and workflow engine of Nextflow. The 
 BEAST-FLOW was first published as part of a paper classifying SARS-CoV-2 reinfections. 
 
 ## Table of Contents
-## - [Introduction](#introduction)
-## - [Workflow](#workflow)
-## - [Dependencies](#dependencies)
-## - [Installation](#installation)
-## - [Usage](#usage)
-## - [Input](#input)
-## - [Output](#output)
-## - [References](#references)
+- [Introduction](#introduction)
+- [Workflow](#workflow)
+- [Dependencies](#dependencies)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Input](#input)
+- [Output](#output)
+- [References](#references)
 
 ## Workflow
 
