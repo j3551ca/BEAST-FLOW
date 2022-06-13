@@ -11,6 +11,16 @@ BEAST-FLOW is written in the glue language and workflow engine of Nextflow. The 
 
 BEAST-FLOW was first published as part of a paper classifying SARS-CoV-2 reinfections. 
 
+## Table of Contents
+## - [Introduction](#introduction)
+## - [Workflow](#workflow)
+## - [Dependencies](#dependencies)
+## - [Installation](#installation)
+## - [Usage](#usage)
+## - [Input](#input)
+## - [Output](#output)
+## - [References](#references)
+
 ## Workflow
 
 ![image](/pics/beast-flow_dag.png)
@@ -54,6 +64,17 @@ or run directly using:
 nextflow run j3551ca/BEAST-FLOW -profile conda
 ```
 
+## Usage
+
+Change into working directory:
+```
+cd /home/user/directory/containing/BEAST-FLOW
+```
+Run BEAST-FLOW pipeline:
+```
+nextflow run main.nf -profile conda --multi_fa dengue_multi.fasta --prefix  dengue_run1 [OPTIONS]
+```
+
 ## Input
 
 1.	Multi-fasta file with at least 5 sequences \(MAFFT will throw error otherwise\). 
@@ -66,7 +87,7 @@ ATGGAGAGCCTTGTCCCTGGTTTCAACGAGAAAACACACGTCCAACTCAGTTTGCCTGTTTTACAGGTTCGCGACGTGAC
 ATGGAGAGCCTTGTCCCTGGTTTCAACGAGAAAACACACGTCCAACTCAGTTTGCCTGTTTTACAGGTTCGCGACGTGCTCGTACGTGGCTTTGGAGACTCCGTGGAGGAGGTCTTATCAGAGGCACGTCAACATCTTAAAGATGGCACTTGTGG\
 .\
 .\
-.\
+.
 
 2.	Prefix string. This label will be used to name output files generated in BEAST-FLOW and avoids overwriting. 
 
@@ -82,16 +103,6 @@ Depending on the options specified in the command line, the following result fil
 - The posterior distribution of trees from BEAST2: \*.trees
 - A maximum clade credibility \(MCC\) tree: \*_mcc.tree
  
-## Usage
-
-Change into working directory:
-```
-cd /home/user/directory/containing/BEAST-FLOW
-```
-Run BEAST-FLOW pipeline:
-```
-nextflow run main.nf -profile conda --multi_fa dengue_multi.fasta --prefix  dengue_run1 [OPTIONS]
-```
 
 ## References
 
