@@ -19,7 +19,8 @@ BEAST-FLOW was first published as part of a paper classifying SARS-CoV-2 reinfec
 
 This bioinformatic pipeline requires Nextflow:
 
-```conda install -c bioconda nextflow```
+```conda install -c bioconda nextflow
+```
 
 or download and add the nextflow executable to a location in your user $PATH variable:
 
@@ -29,7 +30,8 @@ mv nextflow ~/bin/
 
 Nextflow requires Java v8.0+, so check it is installed:
 
-```java -version```
+```java -version
+```
 
 All other dependencies, including MAFFT, BEAST2-XML, BEAST2, & IQ-TREE, can be found in the ‘beastflow_env.yml’ file and are activated upon running the program.
 
@@ -44,17 +46,18 @@ nextflow run main.nf -profile conda
 
 or run directly using:
 
-```nextflow run j3551ca/BEAST-FLOW -profile conda```
+```nextflow run j3551ca/BEAST-FLOW -profile conda
+```
 
 ## Input
 
 1.	Multi-fasta file with at least 5 sequences \(MAFFT will throw error otherwise\). 
 
-\>Seq1_2021-05-31
+\n\>Seq1_2021-05-31
 ATGGAGAGCCTTGTCCCTGGTTTCAACGAGAAAACACACGTCCAACTCAGTTTGCCTGTTTTACAGGTTCGCGACGTGCTCGTACGTGGCTTTGGAGACTCCGTGGAGGAGGTCTTATCAGAGGCACGTCAACATCAA
-\>Seq2_2021-09-16
+\n\>Seq2_2021-09-16
 ATGGAGAGCCTTGTCCCTGGTTTCAACGAGAAAACACACGTCCAACTCAGTTTGCCTGTTTTACAGGTTCGCGACGTGACCTTATGAAGATTTTCAAGAAAACTGGAACACTAAACATAGCAGTGGTGTTACCCGTGAACTCATGCGTGAGCT
-\>Seq3_2022-01-04
+\n\>Seq3_2022-01-04
 ATGGAGAGCCTTGTCCCTGGTTTCAACGAGAAAACACACGTCCAACTCAGTTTGCCTGTTTTACAGGTTCGCGACGTGCTCGTACGTGGCTTTGGAGACTCCGTGGAGGAGGTCTTATCAGAGGCACGTCAACATCTTAAAGATGGCACTTGTGG
 .
 .
@@ -76,9 +79,13 @@ Depending on the options specified in the command line, the following result fil
  
 ## Usage
 
-1.	```cd /home/user/directory/containing/BEAST-FLOW```
+Change into working directory:
 
-2.	```nextflow run main.nf -profile conda --multi_fa dengue_multi.fasta --prefix  dengue_run1 [OPTIONS]```
+```cd /home/user/directory/containing/BEAST-FLOW
+```
+Run BEAST-FLOW pipeline:
+```nextflow run main.nf -profile conda --multi_fa dengue_multi.fasta --prefix  dengue_run1 [OPTIONS]
+```
 
 ## References
 
