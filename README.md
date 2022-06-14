@@ -1,4 +1,4 @@
-[Image](/pics/beast-flow_logo.png)
+![image](/pics/beast-flow_logo.png)
 
 ## Introduction
 
