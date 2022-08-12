@@ -9,7 +9,7 @@ while integrating breaks for manual revision of data-suitability in TempEst and 
 
 BEAST-FLOW is written in the glue language and workflow engine of Nextflow. The parallelization, portability, and modularity of dataflow programming facilitate high-throughput data analysis, reproducibility, and customization. Modifications to the default parameters can be easily adjusted to fit the purpose of a project.  
 
-BEAST-FLOW was first published as part of a paper classifying SARS-CoV-2 reinfections. 
+BEAST-FLOW was first published as part of a paper (manuscript in preparation) classifying SARS-CoV-2 reinfections. 
 
 ## Table of Contents
 - [Introduction](#introduction)
