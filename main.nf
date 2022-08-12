@@ -24,8 +24,10 @@ Mandatory arguments:
 
 Optional arguments:
 --out_dir                      Output directory to place final BEAST-FLOW results [./output]
+--conda_cache                  File system path where Conda env is to be stored [BEAST-FLOW/work/]
 --evo_model                    Evolutionary model used to generate phylogenetic tree [GTR+G]
---run_part2                    Continue with rest of analysis after manual check of temporal signal [false]
+--run_part2                    Continue with subsequent analysis after manual check of temporal signal [false]
+--run_part3                    Continue with subsequent analysis after manual check for MCMC convergence & mixing [false]
 --xml_args                     Input parameters for generating xml for BEAST. Use <beast2-xml.py --help>
                                for full list of options [--chainLength 1000000 --sequenceIdAgeRegex...]
 --xml_temp                     Template used to generate xml, differs depending on clock used [strict.xml]
